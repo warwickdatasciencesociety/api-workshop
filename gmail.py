@@ -93,6 +93,8 @@ def main():
         # send the message to your uni address using send_message()
     END TASK 
     """
+    create_message('YOUR_EMAIL@gmail.com', 'YOUR_EMAIL@warwick.ac.uk', 'Automated Email', 'Hello, World!')
+    send_message(service, 'me', msg)
 
 
 if __name__ == "__main__":
