@@ -159,7 +159,6 @@ def basic_crud_id(table, iden):
 # provide an interface to enter a new grade - this should link with an API
 # call above
 @app.route('/newgrades')
-@jwt_required()
 def new_grade():
     students = Student.query.all()
     courses = Course.query.all()
@@ -168,21 +167,7 @@ def new_grade():
 # the default mechanism for getting authentication to access the API
 @app.route('/token/auth', methods=['GET', 'POST'])
 def auth():
-    if request.method == 'POST':
-        entered_uname = request.form['u_name']
-        entered_upass = request.form['u_pass']
-        user = User.query.filter_by(u_name=entered_uname).first()
-        if user and safe_str_cmp(user.u_pass.encode('utf-8'), entered_upass.encode('utf-8')):
-                access_token = create_access_token(identity=entered_uname)
-                refresh_token = create_refresh_token(identity=entered_uname)
-                response = jsonify(login=True, success=True, access_token=access_token, refresh_token=refresh_token)
-                set_access_cookies(response, access_token)
-                set_refresh_cookies(response, access_token)
-                return response, 200
-        else:
-            error = "Invalid Credentials. Please try again."
-            return jsonify(success=False, message=str(error))
-    return render_template('login.html')
+    pass
 
 # only run the app if it is being called directly
 # this prevents it running e.g. if being erroneously imported
