@@ -159,6 +159,7 @@ def basic_crud_id(table, iden):
 # provide an interface to enter a new grade - this should link with an API
 # call above
 @app.route('/newgrades')
+@jwt_required()
 def new_grade():
     students = Student.query.all()
     courses = Course.query.all()
