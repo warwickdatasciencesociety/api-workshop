@@ -31,12 +31,6 @@ class Grade(db.Model):
     c_id = db.Column(db.Integer, db.ForeignKey('course.id'))
     grade = db.Column(db.Integer, nullable=False)
 
-class User(db.Model):
-    __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key=True)
-    u_name = db.Column(db.String(20), nullable=False)
-    u_pass = db.Column(db.String(20), nullable=False)
-
 # the root page, which returns JSONified hello world message
 @app.route('/')
 def index():
