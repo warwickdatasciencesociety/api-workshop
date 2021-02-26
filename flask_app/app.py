@@ -1,50 +1,23 @@
 # import libraries necessary for the app to work
 from flask import Flask, request, jsonify, render_template
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import text
+import json
 
-# configure flask so that it will connect to the database, and can be hosted
-# locally
+with open('grades.json') as file:
+    data = json.load(file)
+
+# configure flask
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///grades.db'
-
-# configure the database and authentication managers
-db = SQLAlchemy(app)
-
-# here we have formalised the database fields and views into Python objects
-# this will make it easier to deal with database-related operations in Flask
-class Student(db.Model):
-    __tablename__ = "student"
-    id = db.Column(db.Integer, primary_key=True)
-    f_name = db.Column(db.String(20), nullable=False)
-    l_name = db.Column(db.String(20), nullable=False)
-
-class Course(db.Model):
-    __tablename__ = "course"
-    id = db.Column(db.Integer, primary_key=True)
-    c_name = db.Column(db.String(20), nullable=False)
-
-class Grade(db.Model):
-    __tablename__ = "grade"
-    id = db.Column(db.Integer, primary_key=True)
-    s_id = db.Column(db.Integer, db.ForeignKey('student.id'))
-    c_id = db.Column(db.Integer, db.ForeignKey('course.id'))
-    grade = db.Column(db.Integer, nullable=False)
 
 # the root page, which returns JSONified hello world message
 @app.route('/')
 def index():
     return jsonify(success=True, message="Hello, World!")
 
-# if you're experiencing issues with connecting to the database, go to this
-# route to check whether or not it works
-@app.route('/dbtest')
-def dbtest():
-    try:
-        db.session.query("1").from_statement(text("SELECT 1")).all()
-        return jsonify(success=True, message="It works")
-    except Exception as e:
-        return jsonify(success=False, message=str(e))
+# a useful function for getting the next id in a table - we will see that SQL
+# can do this for us
+def get_next_id(json):
+    current_highest = max([x['id'] for x in json])
+    return current_highest + 1
 
 # your whole-table endpoints - GET will get all fields in the given table, and
 # POST will add a new record
@@ -54,7 +27,7 @@ def basic_crud(table):
         pass # TODO collect fields from POST request, add record to database
 
     # else, it is a get request
-    pass # TODO get all record from the given table and return them
+    return jsonify(success=True, message=data[table]) # TODO get all record from the given table and return them
 
 # your record-specific endpoints - GET will get the record, PUT will change
 # whatever values are passed, DELETE will delete the record with id iden

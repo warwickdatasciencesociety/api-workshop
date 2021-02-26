@@ -1,0 +1,193 @@
+{
+	"course":
+		[
+		    {
+			"c_name": "Maths",
+			"id": 1
+		    },
+		    {
+			"c_name": "Computer Science",
+			"id": 2
+		    },
+		    {
+			"c_name": "Music",
+			"id": 3
+		    }
+		],
+	"grade":
+		[
+		    {
+			"c_id": 2,
+			"grade": 16,
+			"id": 1,
+			"s_id": 2
+		    },
+		    {
+			"c_id": 1,
+			"grade": 14,
+			"id": 2,
+			"s_id": 10
+		    },
+		    {
+			"c_id": 2,
+			"grade": 57,
+			"id": 3,
+			"s_id": 2
+		    },
+		    {
+			"c_id": 2,
+			"grade": 5,
+			"id": 4,
+			"s_id": 3
+		    },
+		    {
+			"c_id": 1,
+			"grade": 21,
+			"id": 5,
+			"s_id": 6
+		    },
+		    {
+			"c_id": 1,
+			"grade": 64,
+			"id": 6,
+			"s_id": 4
+		    },
+		    {
+			"c_id": 3,
+			"grade": 56,
+			"id": 7,
+			"s_id": 9
+		    },
+		    {
+			"c_id": 3,
+			"grade": 71,
+			"id": 8,
+			"s_id": 8
+		    },
+		    {
+			"c_id": 1,
+			"grade": 49,
+			"id": 9,
+			"s_id": 9
+		    },
+		    {
+			"c_id": 3,
+			"grade": 30,
+			"id": 10,
+			"s_id": 1
+		    },
+		    {
+			"c_id": 3,
+			"grade": 58,
+			"id": 11,
+			"s_id": 7
+		    },
+		    {
+			"c_id": 2,
+			"grade": 90,
+			"id": 12,
+			"s_id": 8
+		    },
+		    {
+			"c_id": 2,
+			"grade": 3,
+			"id": 13,
+			"s_id": 9
+		    },
+		    {
+			"c_id": 2,
+			"grade": 79,
+			"id": 14,
+			"s_id": 6
+		    },
+		    {
+			"c_id": 1,
+			"grade": 59,
+			"id": 15,
+			"s_id": 9
+		    },
+		    {
+			"c_id": 1,
+			"grade": 80,
+			"id": 16,
+			"s_id": 5
+		    },
+		    {
+			"c_id": 1,
+			"grade": 48,
+			"id": 17,
+			"s_id": 8
+		    },
+		    {
+			"c_id": 2,
+			"grade": 74,
+			"id": 18,
+			"s_id": 8
+		    },
+		    {
+			"c_id": 3,
+			"grade": 56,
+			"id": 19,
+			"s_id": 5
+		    },
+		    {
+			"c_id": 3,
+			"grade": 10,
+			"id": 20,
+			"s_id": 7
+		    }
+		],
+	"student":
+		[
+		    {
+			"f_name": "Adela",
+			"id": 1,
+			"l_name": "Rucks"
+		    },
+		    {
+			"f_name": "Shawna",
+			"id": 2,
+			"l_name": "Kellough"
+		    },
+		    {
+			"f_name": "Anissa",
+			"id": 3,
+			"l_name": "Mcneilly"
+		    },
+		    {
+			"f_name": "Kandi",
+			"id": 4,
+			"l_name": "Fu"
+		    },
+		    {
+			"f_name": "Amado",
+			"id": 5,
+			"l_name": "Beebe"
+		    },
+		    {
+			"f_name": "Paulina",
+			"id": 6,
+			"l_name": "Schroyer"
+		    },
+		    {
+			"f_name": "Bobette",
+			"id": 7,
+			"l_name": "Whited"
+		    },
+		    {
+			"f_name": "Ethyl",
+			"id": 8,
+			"l_name": "Padro"
+		    },
+		    {
+			"f_name": "Alana",
+			"id": 9,
+			"l_name": "Billy"
+		    },
+		    {
+			"f_name": "Vivan",
+			"id": 10,
+			"l_name": "Candler"
+		    }
+		]
+}
