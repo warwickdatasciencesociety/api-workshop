@@ -1,9 +1,12 @@
+# import libraries necessary for the app to work
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies
 from werkzeug.security import safe_str_cmp
 
+# configure flask so that it will connect to the database, and can be hosted
+# locally
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///grades.db'
 app.config['SERCET_KEY'] = 'super-secret'
@@ -11,11 +14,15 @@ app.config['JWT_SECRET_KEY'] = 'also-secret'
 app.config['JWT_TOKEN_LOCATION'] = ['cookies']
 app.config['JWT_ACCESS_COOKIE_PATH'] = '/api/'
 app.config['JWT_REFRESH_COOKIE_PATH'] = '/token/refresh'
+# do not set this config variable in a production environment!
 app.config['JWT_COOKIE_CSRF_PROTECT'] = False
 
+# configure the database and authentication managers
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
 
+# here we have formalised the database fields and views into Python objects
+# this will make it easier to deal with database-related operations in Flask
 class Student(db.Model):
     __tablename__ = "student"
     id = db.Column(db.Integer, primary_key=True)
@@ -40,10 +47,13 @@ class User(db.Model):
     u_name = db.Column(db.String(20), nullable=False)
     u_pass = db.Column(db.String(20), nullable=False)
 
+# the root page, which returns JSONified hello world message
 @app.route('/')
 def index():
-    return "Hello, World!"
+    return jsonify(success=True, message="Hello, World!")
 
+# if you're experiencing issues with connecting to the database, go to this
+# route to check whether or not it works
 @app.route('/dbtest')
 def dbtest():
     try:
@@ -52,6 +62,8 @@ def dbtest():
     except Exception as e:
         return jsonify(success=False, message=str(e))
 
+# your whole-table endpoints - GET will get all fields in the given table, and
+# POST will add a new record
 @app.route('/api/<table>', methods=['GET', 'POST'])
 @jwt_required()
 def basic_crud(table):
@@ -89,8 +101,11 @@ def basic_crud(table):
     else:
         return f'Table {table} does not exist'
 
+    # else (not required due to complete returns above)
     return jsonify(success=True, message=str([x.__dict__  for x in returnVal]))
 
+# your record-specific endpoints - GET will get the record, PUT will change
+# whatever values are passed, DELETE will delete the record
 @app.route('/api/<table>/<iden>', methods=['GET', 'PUT', 'DELETE'])
 @jwt_required()
 def basic_crud_id(table, iden):
@@ -141,6 +156,8 @@ def basic_crud_id(table, iden):
 
     return jsonify(success=True, message=str(record.__dict__))
 
+# provide an interface to enter a new grade - this should link with an API
+# call above
 @app.route('/newgrades')
 @jwt_required()
 def new_grade():
@@ -148,6 +165,7 @@ def new_grade():
     courses = Course.query.all()
     return render_template('new.html', students=students, courses=courses)
 
+# the default mechanism for getting authentication to access the API
 @app.route('/token/auth', methods=['GET', 'POST'])
 def auth():
     if request.method == 'POST':
@@ -166,5 +184,7 @@ def auth():
             return jsonify(success=False, message=str(error))
     return render_template('login.html')
 
+# only run the app if it is being called directly
+# this prevents it running e.g. if being erroneously imported
 if __name__ == "__main__":
     app.run(debug=True)
