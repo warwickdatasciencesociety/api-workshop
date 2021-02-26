@@ -1,10 +1,20 @@
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies
+from werkzeug.security import safe_str_cmp
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///grades.db'
+app.config['SERCET_KEY'] = 'super-secret'
+app.config['JWT_SECRET_KEY'] = 'also-secret'
+app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+app.config['JWT_ACCESS_COOKIE_PATH'] = '/api/'
+app.config['JWT_REFRESH_COOKIE_PATH'] = '/token/refresh'
+app.config['JWT_COOKIE_CSRF_PROTECT'] = False
+
 db = SQLAlchemy(app)
+jwt = JWTManager(app)
 
 class Student(db.Model):
     __tablename__ = "student"
@@ -24,6 +34,12 @@ class Grade(db.Model):
     c_id = db.Column(db.Integer, db.ForeignKey('course.id'))
     grade = db.Column(db.Integer, nullable=False)
 
+class User(db.Model):
+    __tablename__ = "user"
+    id = db.Column(db.Integer, primary_key=True)
+    u_name = db.Column(db.String(20), nullable=False)
+    u_pass = db.Column(db.String(20), nullable=False)
+
 @app.route('/')
 def index():
     return "Hello, World!"
@@ -37,6 +53,7 @@ def dbtest():
         return jsonify(success=False, message=str(e))
 
 @app.route('/api/<table>', methods=['GET', 'POST'])
+@jwt_required()
 def basic_crud(table):
     if request.method == 'POST':
         if table == 'student':
@@ -75,6 +92,7 @@ def basic_crud(table):
     return jsonify(success=True, message=str([x.__dict__  for x in returnVal]))
 
 @app.route('/api/<table>/<iden>', methods=['GET', 'PUT', 'DELETE'])
+@jwt_required()
 def basic_crud_id(table, iden):
     if table == 'student':
         record = Student.query.get_or_404(iden)
@@ -124,10 +142,29 @@ def basic_crud_id(table, iden):
     return jsonify(success=True, message=str(record.__dict__))
 
 @app.route('/newgrades')
+@jwt_required()
 def new_grade():
     students = Student.query.all()
     courses = Course.query.all()
     return render_template('new.html', students=students, courses=courses)
+
+@app.route('/token/auth', methods=['GET', 'POST'])
+def auth():
+    if request.method == 'POST':
+        entered_uname = request.form['u_name']
+        entered_upass = request.form['u_pass']
+        user = User.query.filter_by(u_name=entered_uname).first()
+        if user and safe_str_cmp(user.u_pass.encode('utf-8'), entered_upass.encode('utf-8')):
+                access_token = create_access_token(identity=entered_uname)
+                refresh_token = create_refresh_token(identity=entered_uname)
+                response = jsonify(login=True, success=True, access_token=access_token, refresh_token=refresh_token)
+                set_access_cookies(response, access_token)
+                set_refresh_cookies(response, access_token)
+                return response, 200
+        else:
+            error = "Invalid Credentials. Please try again."
+            return jsonify(success=False, message=str(error))
+    return render_template('login.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

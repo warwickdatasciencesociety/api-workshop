@@ -8,9 +8,11 @@ cursor = db.cursor()
 setup_commands = ["DROP TABLE IF EXISTS student",
         "DROP TABLE IF EXISTS course",
         "DROP TABLE IF EXISTS grade",
+        "DROP TABLE IF EXISTS user",
         "CREATE TABLE student(id INTEGER PRIMARY KEY, f_name TEXT, l_name TEXT)",
         "CREATE TABLE course(id INTEGER PRIMARY KEY, c_name TEXT)",
-        "CREATE TABLE grade(id INTEGER PRIMARY KEY, s_id INTEGER, c_id INTEGER, grade INTEGER, FOREIGN KEY(s_id) REFERENCES student(id), FOREIGN KEY(c_id) REFERENCES course(id))"]
+        "CREATE TABLE grade(id INTEGER PRIMARY KEY, s_id INTEGER, c_id INTEGER, grade INTEGER, FOREIGN KEY(s_id) REFERENCES student(id), FOREIGN KEY(c_id) REFERENCES course(id))",
+        "CREATE TABLE user(id INTEGER PRIMARY KEY, u_name TEXT, u_pass TEXT)"]
 
 students = [("Adela", "Rucks"),
             ("Shawna", "Kellough"),
@@ -41,5 +43,7 @@ for course in courses:
 for grade in grades:
     statement = "INSERT INTO grade(s_id, c_id, grade) VALUES(?, ?, ?)"
     cursor.execute(statement, grade)
+
+cursor.execute("INSERT INTO user(u_name, u_pass) VALUES(?, ?)", ("admin", "password"))
 
 db.commit()
