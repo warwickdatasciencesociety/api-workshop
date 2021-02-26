@@ -2,24 +2,14 @@
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
-from flask_jwt_extended import JWTManager, jwt_required, create_access_token, create_refresh_token, set_access_cookies, set_refresh_cookies
-from werkzeug.security import safe_str_cmp
 
 # configure flask so that it will connect to the database, and can be hosted
 # locally
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///grades.db'
-app.config['SERCET_KEY'] = 'super-secret'
-app.config['JWT_SECRET_KEY'] = 'also-secret'
-app.config['JWT_TOKEN_LOCATION'] = ['cookies']
-app.config['JWT_ACCESS_COOKIE_PATH'] = '/api/'
-app.config['JWT_REFRESH_COOKIE_PATH'] = '/token/refresh'
-# do not set this config variable in a production environment!
-app.config['JWT_COOKIE_CSRF_PROTECT'] = False
 
 # configure the database and authentication managers
 db = SQLAlchemy(app)
-jwt = JWTManager(app)
 
 # here we have formalised the database fields and views into Python objects
 # this will make it easier to deal with database-related operations in Flask
@@ -65,96 +55,25 @@ def dbtest():
 # your whole-table endpoints - GET will get all fields in the given table, and
 # POST will add a new record
 @app.route('/api/<table>', methods=['GET', 'POST'])
-@jwt_required()
 def basic_crud(table):
     if request.method == 'POST':
-        if table == 'student':
-            entry = Student(
-                f_name=request.form['f_name'],
-                l_name=request.form['l_name']
-            )
-        elif table == 'course':
-            entry = Course(
-                c_name=request.form['c_name']
-            )
-        elif table == 'grade':
-            entry = Grade(
-                s_id=request.form['s_id'],
-                c_id=request.form['c_id'],
-                grade=request.form['grade']
-            )
-        else:
-            return f'Table {table} does not exist'
+        pass # TODO collect fields from POST request, add record to database
 
-        try:
-            db.session.add(entry)
-            db.session.commit()
-            return jsonify(success=True)
-        except Exception as e:
-            return jsonify(success=False, message=str(e))
-    if table == 'student':
-        returnVal = Student.query.all()
-    elif table == 'course':
-        returnVal = Course.query.all()
-    elif table == 'grade':
-        returnVal = Grade.query.all()
-    else:
-        return f'Table {table} does not exist'
-
-    # else (not required due to complete returns above)
-    return jsonify(success=True, message=str([x.__dict__  for x in returnVal]))
+    # else, it is a get request
+    pass # TODO get all record from the given table and return them
 
 # your record-specific endpoints - GET will get the record, PUT will change
-# whatever values are passed, DELETE will delete the record
+# whatever values are passed, DELETE will delete the record with id iden
 @app.route('/api/<table>/<iden>', methods=['GET', 'PUT', 'DELETE'])
-@jwt_required()
 def basic_crud_id(table, iden):
-    if table == 'student':
-        record = Student.query.get_or_404(iden)
-    elif table == 'course':
-        record = Course.query.get_or_404(iden)
-    elif table == 'grade':
-        record = Grade.query.get_or_404(iden)
-    else:
-        return f'Table {table} does not exist'
-
     if request.method == 'PUT':
-        if table == 'student':
-            if 'f_name' in request.form:
-                record.f_name = request.form['f_name']
-            if 'l_name' in request.form:
-                record.l_name = request.form['l_name']
-
-        elif table == 'course':
-            if 'c_name' in request.form:
-                record.c_name = request.form['c_name']
-
-        elif table == 'grade':
-            if 's_id' in request.form:
-                record.s_id = request.form['s_id']
-            if 'c_id' in request.form:
-                record.c_id = request.form['c_id']
-            if 'grade' in request.form:
-                record.grade = request.form['grade']
-
-        else:
-            return f'Table {table} does not exist'
-
-        try:
-            db.session.commit()
-            return jsonify(success=True)
-        except Exception as e:
-            return jsonify(success=False, message=str(e))
+        pass # TODO retrieve the selected record, update any fields specified
 
     if request.method == 'DELETE':
-        try:
-            db.session.delete(record)
-            db.session.commit()
-            return jsonify(success=True)
-        except Exception as e:
-            return jsonify(success=False, message=str(e))
+        pass # TODO delete the selected record
 
-    return jsonify(success=True, message=str(record.__dict__))
+    # else, it is a GET request
+    pass # TODO get record with specified id and return
 
 # provide an interface to enter a new grade - this should link with an API
 # call above
@@ -163,11 +82,6 @@ def new_grade():
     students = Student.query.all()
     courses = Course.query.all()
     return render_template('new.html', students=students, courses=courses)
-
-# the default mechanism for getting authentication to access the API
-@app.route('/token/auth', methods=['GET', 'POST'])
-def auth():
-    pass
 
 # only run the app if it is being called directly
 # this prevents it running e.g. if being erroneously imported
