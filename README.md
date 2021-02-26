@@ -1,39 +1,22 @@
+# WDSS API Workshop - Flask App - Part 2
 
-# WDSS API Workshop Part One Extension
-
-  
 ## Task
-- Register to an OAuth API
-- Send an email from your gmail address to your university address
+- Set up GET and POST endpoints for general tables
+- Set up GET, PUT, and DELETE endpoints for specific records
+
 ## Preqrequisites
 
 - Have Python 3.x installed
 - Basic understanding of python
-- Basic terminal knowledge or how to install/run python without a terminal  
+- Basic terminal knowledge or how to install/run python without a terminal
 
-## Setup
+## Set up GET and POST endpoints for general tables
 
-1. Clone the repository to your computer, if you're not familiar with git, feel free to download it as a zip
-
-2. Install the dependencies listed in requirements.txt
-
-	I recommend setting upa virtual environment in Python. All this does is isolate the dependencies so you don't get any weird issues but it's not needed to get things going.
-
-	On OSX or Linux do the following:
-
-	`pip3 install virutalenv`
-
-	`python3 -m venv venv`
-
-	`source /venv/venv/bin/activate`
-
-	`pip3 install -r requirements.txt`
-3.   Head to this link and hit the Enable the Gmail API button: https://developers.google.com/gmail/api/quickstart/python
-	a. Enter "WDSS API Workshop" for the project name
-	b. Select Desktop App
-	c. Download the credentials.json file and replace the existing credentials.json file with it
-
-*Please note this contains your client id and client secret. You should make sure to not expose this information otherwise people could maliciously use your credentials. *
+1. The skeleton code provided gives the route and GET and POST endpoints. It also provides a function to easily retrieve the next id from a JSON table.
+2. Try the GET endpoint first. It needs to retrieve all of the records for a given table - in this example, `data` is the dictionary holding the tables (as lists of dictionaries).
+3. Test the GET endpoint. In your browser, go to http://localhost:5000/api/student, then http://localhost:5000/api/course, then http://localhost:5000/grade and compare these with the same respective endpoints of http://wdssapiworkshop.herokuapp.com - you will see that whilst it is formatted slightly differently, the data retrieved is largely the same.
+4. Now try the POST endpoint. This is trickier. You want to retrieve the form data (have a look at Flask `request` class), and then add the new record (with fields given in this form) to the data.
+5. Test the POST endpoint using `httpie` (make sure you are in the environment). Type in the following command: `http -f POST http://localhost:5000/api/student f_name=John l_name=Smith`. It should return a success code, but more importantly, when you then try the GET endpoint again, your new student should be there. (Note: you can also issue a GET endpoint using httpie, but the browser does it for us when you type in the URL. The syntax for this would be `http -f GET http://localhost:5000/api/student`).
 
 ## Get Coding 
 Follow the comments in the file to complete the task, if you get stuck you can consult the documentation, or look at the solutions branch on the repo.

@@ -27,7 +27,7 @@ def basic_crud(table):
         pass # TODO collect fields from POST request, add record to database
 
     # else, it is a get request
-    return jsonify(success=True, message=data[table]) # TODO get all record from the given table and return them
+    pass # TODO get all record from the given table and return them
 
 # your record-specific endpoints - GET will get the record, PUT will change
 # whatever values are passed, DELETE will delete the record with id iden
