@@ -66,7 +66,7 @@ def dbtest():
 # POST will add a new record
 @app.route('/api/<table>', methods=['GET', 'POST'])
 @jwt_required()
-def basic_crud(table):
+def table_crud(table):
     if request.method == 'POST':
         if table == 'student':
             entry = Student(
@@ -108,7 +108,7 @@ def basic_crud(table):
 # whatever values are passed, DELETE will delete the record
 @app.route('/api/<table>/<iden>', methods=['GET', 'PUT', 'DELETE'])
 @jwt_required()
-def basic_crud_id(table, iden):
+def record_crud(table, iden):
     if table == 'student':
         record = Student.query.get_or_404(iden)
     elif table == 'course':
