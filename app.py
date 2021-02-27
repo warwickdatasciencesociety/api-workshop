@@ -22,7 +22,7 @@ def get_next_id(json):
 # your whole-table endpoints - GET will get all fields in the given table, and
 # POST will add a new record
 @app.route('/api/<table>', methods=['GET', 'POST'])
-def basic_crud(table):
+def table_crud(table):
     if request.method == 'POST':
         pass # TODO collect fields from POST request, add record to database
 
@@ -32,7 +32,7 @@ def basic_crud(table):
 # your record-specific endpoints - GET will get the record, PUT will change
 # whatever values are passed, DELETE will delete the record with id iden
 @app.route('/api/<table>/<iden>', methods=['GET', 'PUT', 'DELETE'])
-def basic_crud_id(table, iden):
+def record_crud(table, iden):
     if request.method == 'PUT':
         pass # TODO retrieve the selected record, update any fields specified
 
