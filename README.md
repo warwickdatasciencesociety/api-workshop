@@ -1,4 +1,4 @@
-# WDSS API Workshop - APIs
+# WDSS API Workshop
 
 You have reached the codebase for WDSS's API workshop. Here is some useful info if you get stuck with navigating the repository
 
@@ -26,3 +26,9 @@ Using `git` will be very useful for progressing through this workshop, since it 
 - `git clone https://insert-git-url-here.git` to download the repository (codebase) to your local current working directory
 - `git add .` followed by `git commit -m "Insert useful progress message here"` to "save" your changes locally - you may need to initially set up git credentials, by following the messages given if these commands fail
 - `git branch insert-branch-name-here` to change to a new branch
+
+## Check out WDSS
+
+Warwick Data Science Society (WDSS) is focused on bridging the gap between disciplines to help all students answer the questions that matter to them. Through our talks, teaching and research we aim to educate and inspire everyone about data science. For example: we are running a cloud computing workshop next week, as well as running a social media speaker series featuring guests from Facebook, Snapchat and LadBible.
+
+Keep up to date through our Facebook: https://link.wdss.io/facebook
