@@ -19,4 +19,6 @@
 5. Well done! You have created a RESTful API which interacts with a database in Flask. If you're feeling adventurous, move onto the extension to add some security to it!
 
 ## Check out WDSS
-Warwick Data Science Society (WDSS) is focused on bridging the gap between disciplines to help all students answer the questions that matter to them. Through our talks, teaching and research we aim to educate and inspire everyone about data science.
+Warwick Data Science Society (WDSS) is focused on bridging the gap between disciplines to help all students answer the questions that matter to them. Through our talks, teaching and research we aim to educate and inspire everyone about data science. For example: we are running a cloud computing workshop next week, as well as running a social media speaker series featuring guests from Facebook, Snapchat and LadBible.
+
+Keep up to date through our Facebook: https://link.wdss.io/facebook
