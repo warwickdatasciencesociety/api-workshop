@@ -3,7 +3,6 @@
 ## Task
 - Set up GET and POST endpoints for general JSON objects
 - Set up GET, PUT, and DELETE endpoints for specific data
-- Try and explore the newgrades route
 
 ## Preqrequisites
 
