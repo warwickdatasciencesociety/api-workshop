@@ -1,3 +1,5 @@
 extension/venv/
 flask_app/venv/
 extension/token.pickle
+venv/
+.DS_Store
