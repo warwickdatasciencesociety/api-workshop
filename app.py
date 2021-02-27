@@ -19,36 +19,28 @@ def get_next_id(json):
     current_highest = max([x['id'] for x in json])
     return current_highest + 1
 
-# your whole-table endpoints - GET will get all fields in the given table, and
-# POST will add a new record
-@app.route('/api/<table>', methods=['GET', 'POST'])
+# your whole-data endpoints - GET will get all the data in the given JSON object, and
+# POST will add to the specified JSON object
+@app.route('/api/<obj>', methods=['GET', 'POST'])
 def table_crud(table):
     if request.method == 'POST':
-        pass # TODO collect fields from POST request, add record to database
+        pass # TODO collect fields from POST request, add data to JSON object
 
     # else, it is a get request
-    pass # TODO get all record from the given table and return them
+    pass # TODO get all data from the given JSON object and return them
 
-# your record-specific endpoints - GET will get the record, PUT will change
-# whatever values are passed, DELETE will delete the record with id iden
-@app.route('/api/<table>/<iden>', methods=['GET', 'PUT', 'DELETE'])
+# your data-specific endpoints - GET will get the data from JSON object with given id, PUT will change
+# whatever values are passed, DELETE will delete the data with id iden
+@app.route('/api/<obj>/<iden>', methods=['GET', 'PUT', 'DELETE'])
 def record_crud(table, iden):
     if request.method == 'PUT':
-        pass # TODO retrieve the selected record, update any fields specified
+        pass # TODO retrieve the selected data, update any fields specified
 
     if request.method == 'DELETE':
-        pass # TODO delete the selected record
+        pass # TODO delete the selected data
 
     # else, it is a GET request
-    pass # TODO get record with specified id and return
-
-# provide an interface to enter a new grade - this should link with an API
-# call above
-@app.route('/newgrades')
-def new_grade():
-    students = Student.query.all()
-    courses = Course.query.all()
-    return render_template('new.html', students=students, courses=courses)
+    pass # TODO get data with specified id and return
 
 # only run the app if it is being called directly
 # this prevents it running e.g. if being erroneously imported
