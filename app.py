@@ -22,7 +22,7 @@ def get_next_id(json):
 # your whole-data endpoints - GET will get all the data in the given JSON object, and
 # POST will add to the specified JSON object
 @app.route('/api/<obj>', methods=['GET', 'POST'])
-def table_crud(table):
+def table_crud(obj):
     if request.method == 'POST':
         pass # TODO collect fields from POST request, add data to JSON object
 
@@ -32,7 +32,7 @@ def table_crud(table):
 # your data-specific endpoints - GET will get the data from JSON object with given id, PUT will change
 # whatever values are passed, DELETE will delete the data with id iden
 @app.route('/api/<obj>/<iden>', methods=['GET', 'PUT', 'DELETE'])
-def record_crud(table, iden):
+def record_crud(obj, iden):
     if request.method == 'PUT':
         pass # TODO retrieve the selected data, update any fields specified
 
