@@ -33,7 +33,7 @@
 2. Have a look and play around with the interaction between `app.py` and `templates/new.html`, and try to understand what it does. This is an example of the interaction between a backend and frontend through the use of an API, which is very prevalent in a lot of online services and web apps.
 3. When you're ready, move onto part 3.
 
-## Interested in learning more?
-This workshop was designed to give a brief intro into using APIs, as well as building them. As a result there is still a lot left uncovered and the possibilties of what you can do with them are endless.
+## Check out WDSS
+Warwick Data Science Society (WDSS) is focused on bridging the gap between disciplines to help all students answer the questions that matter to them. Through our talks, teaching and research we aim to educate and inspire everyone about data science. For example: we are running a cloud computing workshop next week, as well as running a social media speaker series featuring guests from Facebook, Snapchat and LadBible.
 
-If you would like get a better understanding of how OAuth works, Spotify has some great documentation outlining its process: https://developer.spotify.com/documentation/general/guides/authorization-guide/
+Keep up to date through our Facebook: https://link.wdss.io/facebook
