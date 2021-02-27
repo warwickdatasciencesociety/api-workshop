@@ -1,2 +1,4 @@
 extension/token.pickle
 extension/venv/
+venv/
+.DS_Store

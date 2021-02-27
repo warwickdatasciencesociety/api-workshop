@@ -1,25 +1,22 @@
-
 # WDSS API Workshop Part One Extension
-
   
 ## Task
 - Register to an OAuth API
 - Send an email from your gmail address to your university address
-## Preqrequisites
 
+## Preqrequisites
 - Have Python 3.x installed
 - Basic understanding of python
 - Basic terminal knowledge or how to install/run python without a terminal  
 
 ## Setup
-
 1. Clone the repository to your computer, if you're not familiar with git, feel free to download it as a zip
 
 2. Install the dependencies listed in requirements.txt
 
-	I recommend setting upa virtual environment in Python. All this does is isolate the dependencies so you don't get any weird issues but it's not needed to get things going.
+	I recommend setting up a virtual environment in Python. All this does is isolate the dependencies so you don't get any weird issues but it's not needed to get things going.
 
-	On OSX or Linux do the following:
+	On OSX (Terminal), Linux (Terminal) or Windows (PowerShell/Command Prompt, preferably PowerShell) do the following:
 
 	`pip3 install virutalenv`
 
@@ -35,7 +32,7 @@
 
 *Please note this contains your client id and client secret. You should make sure to not expose this information otherwise people could maliciously use your credentials. *
 
-## Get Coding 
+## Get Coding
 Follow the comments in the file to complete the task, if you get stuck you can consult the documentation, or look at the solutions branch on the repo.
 
 The first time you run the code, you will be redirected to the Google OAuth page, it will say the developer is unregistered and poses a security risk but just advance as you're the developer! After this the credentials are stored locally so it does not need to make this request every time the program is run.
@@ -47,7 +44,13 @@ Once you think your program is ready to run, use the following command to run it
  `python3 gmail.py`
 
  Have fun!
+
 ## Interested in learning more?
 This workshop was designed to give a brief intro into using APIs, as well as building them. As a result there is still a lot left uncovered and the possibilties of what you can do with them are endless.
 
 If you would like get a better understanding of how OAuth works, Spotify has some great documentation outlining its process: https://developer.spotify.com/documentation/general/guides/authorization-guide/
+
+## Check out WDSS
+Warwick Data Science Society (WDSS) is focused on bridging the gap between disciplines to help all students answer the questions that matter to them. Through our talks, teaching and research we aim to educate and inspire everyone about data science. For example: we are running a cloud computing workshop next week, as well as running a social media speaker series featuring guests from Facebook, Snapchat and LadBible.
+
+Keep up to date through our Facebook: https://link.wdss.io/facebook
