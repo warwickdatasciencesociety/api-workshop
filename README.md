@@ -2,6 +2,11 @@
 
 You have reached the codebase for WDSS's API workshop. Here is some useful info if you get stuck with navigating the repository
 
+## Workbooks
+Here are the links to the workbook and solutions for the first task!
+- Workbook: https://colab.research.google.com/drive/1eMEuAanjYz8JCUICieNXg_Y--6V4zDbD?usp=sharing
+- Solutions: https://colab.research.google.com/drive/1cwDEzRl2Vff9v5UJNMBlx1ltf5wgdeX-?usp=sharing
+
 ## Branches
 If you are not familiar with `git`, you may find it easier to manually navigate to each branch to get the code changes. Simply click the tree-like logo (currently selected at `master`), and use the dropdown to navigate to the branch of your choice. The following branches correspond to the following topics:
 
