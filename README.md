@@ -1,53 +1,28 @@
+# WDSS API Workshop - APIs
 
-# WDSS API Workshop Part One Extension
+You have reached the codebase for WDSS's API workshop. Here is some useful info if you get stuck with navigating the repository
 
-  
-## Task
-- Register to an OAuth API
-- Send an email from your gmail address to your university address
-## Preqrequisites
+## Branches
+If you are not familiar with `git`, you may find it easier to manually navigate to each branch to get the code changes. Simply click the tree-like logo (currently selected at `master`), and use the dropdown to navigate to the branch of your choice. The following branches correspond to the following topics:
 
-- Have Python 3.x installed
-- Basic understanding of python
-- Basic terminal knowledge or how to install/run python without a terminal  
+- `notebook-extension` corresponds to part 1 extension, sending an e-mail using the gmail API
+- `notebook-solution` corresponds to the solution to the above
+- `flask-partx` corresponds to the different parts of the creation of the flask app (in order)
+- `flask-extension` provides the extension to the flask app task
+- `flask-solution` provides the final flask solution
 
-## Setup
+## Venv
+`venv` will be very useful for ensuring that, despite which environment you have Python installed on, the code you run will run on any device inside the `venv` environment. Below are some useful commands you might need to use:
 
-1. Clone the repository to your computer, if you're not familiar with git, feel free to download it as a zip
+- `pip3 install virtualenv` to install `venv` to Python (only needed to be done once)
+- `python3 -m venv venv` to set up the virtual environment folder (only needed to be done once) 
+- `. venv/bin/activate` to enter the virtual environment
+- `deactivate` to exit the virtual environment
+- `pip3 install -r requirements.txt` to install libraries inside the virtual environment (need to be in the `venv`)
 
-2. Install the dependencies listed in requirements.txt
+## Git
+Using `git` will be very useful for progressing through this workshop, since it will allow you to keep your apps and environments running whilst the code itself changes from branch to branch. It is also very useful (and ubiquitous) in any software development context. Here are some useful `git` commands:
 
-	I recommend setting upa virtual environment in Python. All this does is isolate the dependencies so you don't get any weird issues but it's not needed to get things going.
-
-	On OSX or Linux do the following:
-
-	`pip3 install virutalenv`
-
-	`python3 -m venv venv`
-
-	`source /venv/venv/bin/activate`
-
-	`pip3 install -r requirements.txt`
-3.   Head to this link and hit the Enable the Gmail API button: https://developers.google.com/gmail/api/quickstart/python
-	a. Enter "WDSS API Workshop" for the project name
-	b. Select Desktop App
-	c. Download the credentials.json file and replace the existing credentials.json file with it
-
-*Please note this contains your client id and client secret. You should make sure to not expose this information otherwise people could maliciously use your credentials. *
-
-## Get Coding 
-Follow the comments in the file to complete the task, if you get stuck you can consult the documentation, or look at the solutions branch on the repo.
-
-The first time you run the code, you will be redirected to the Google OAuth page, it will say the developer is unregistered and poses a security risk but just advance as you're the developer! After this the credentials are stored locally so it does not need to make this request every time the program is run.
-
-Also, don't worry if you don't understand what all the code is doing, as long as you have a general idea of how the API is being connected to and used that's great.
-
-Once you think your program is ready to run, use the following command to run it:
-
- `python3 gmail.py`
-
- Have fun!
-## Interested in learning more?
-This workshop was designed to give a brief intro into using APIs, as well as building them. As a result there is still a lot left uncovered and the possibilties of what you can do with them are endless.
-
-If you would like get a better understanding of how OAuth works, Spotify has some great documentation outlining its process: https://developer.spotify.com/documentation/general/guides/authorization-guide/
+- `git clone https://insert-git-url-here.git` to download the repository (codebase) to your local current working directory
+- `git add .` followed by `git commit -m "Insert useful progress message here"` to "save" your changes locally - you may need to initially set up git credentials, by following the messages given if these commands fail
+- `git branch insert-branch-name-here` to change to a new branch
