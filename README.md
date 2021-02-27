@@ -31,7 +31,7 @@
 2. Test that your solution works. Remember, `app.py` will automatically regenerate, so head over to http://localhost:5000/ and see if you get the same results as visiting http://wdssapiworkshop.herokuapp.com/
 3. Move onto part 2.
 
-## Interested in learning more?
-This workshop was designed to give a brief intro into using APIs, as well as building them. As a result there is still a lot left uncovered and the possibilties of what you can do with them are endless.
+## Check out WDSS
+Warwick Data Science Society (WDSS) is focused on bridging the gap between disciplines to help all students answer the questions that matter to them. Through our talks, teaching and research we aim to educate and inspire everyone about data science. For example: we are running a cloud computing workshop next week, as well as running a social media speaker series featuring guests from Facebook, Snapchat and LadBible.
 
-If you would like get a better understanding of how OAuth works, Spotify has some great documentation outlining its process: https://developer.spotify.com/documentation/general/guides/authorization-guide/
+Keep up to date through our Facebook: https://link.wdss.io/facebook
