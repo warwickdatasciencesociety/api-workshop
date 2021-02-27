@@ -30,7 +30,7 @@ Using `git` will be very useful for progressing through this workshop, since it 
 
 - `git clone https://insert-git-url-here.git` to download the repository (codebase) to your local current working directory
 - `git add .` followed by `git commit -m "Insert useful progress message here"` to "save" your changes locally - you may need to initially set up git credentials, by following the messages given if these commands fail
-- `git branch insert-branch-name-here` to change to a new branch
+- `git checkout origin/insert-branch-name-here` followed by `git checkout insert-branch-name-here` to move to another branch
 
 ## Check out WDSS
 
